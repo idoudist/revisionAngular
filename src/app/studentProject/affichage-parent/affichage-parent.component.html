@@ -1,0 +1,44 @@
+<h1>Student Project</h1>
+
+<h3>Student List from Parent</h3>
+
+<table border="1">
+  <tr>
+    <td>Nom</td><td>Prenom</td><td>Francais</td><td>Anglais</td><td>Droit</td><td>Score</td>
+  </tr >
+  <tr *ngFor="let item of listStudent" [ngStyle]="{'background-color' : callScore(item) >= 10 ? 'green' : callScore(item) >= 9 ? 'orange' : 'red' }">
+  <td>{{item.nom}}</td>
+  <td>{{item.prenom}}</td>
+  <td>{{item.anglais}}</td>
+  <td>{{item.francais}}</td>
+  <td>{{item.droit}}</td>
+  <td>{{callScore(item)}}</td>
+  </tr>
+</table>
+
+<h3>Liste demande repassage</h3>
+<label>matiere :</label>
+<select (change)="matiereCourant(position.value)" #position>
+    <option  *ngFor="let mat of matieres">{{mat}}</option>
+</select>
+
+<table border="1">
+  <tr>
+    <td>Nom</td><td>Prenom</td><td>matiere</td><td>note</td>
+  </tr >
+  <tr *ngFor="let dem of listDemande" >
+  <td *ngIf="dem.matiere == selected">{{dem.nom}}</td>
+  <td *ngIf="dem.matiere == selected">{{dem.prenom}}</td>
+  <td *ngIf="dem.matiere == selected">{{dem.matiere}}</td>
+  <td *ngIf="dem.matiere == selected">{{dem.note}}</td>
+  
+  </tr>
+</table>
+
+
+<h3>Student List from Child</h3>
+
+
+<div *ngFor="let item of listStudent">
+  <app-affichage-child [stu] ="item" (deleteEvent)="delete2($event)" (ajoutEvent)="ajoutDemande2($event)" ></app-affichage-child>
+</div>

@@ -1,0 +1,41 @@
+<fieldset style="border: solid;  margin-left: 10px; border-color: #000000;"
+[ngStyle]="{'background-color' : callScore(stu) >= 10 ? 'green' : callScore(stu) >= 9 ? 'orange' : 'red' }">
+
+  <legend style="width:auto; margin-left: 10px;" >{{stu.nom}}.{{stu.prenom}}</legend>
+  <b>anglais :</b>{{stu.anglais}}<br>
+  <b>francais :</b>{{stu.francais}}<br>
+  <b>droit :</b>{{stu.droit}}<br>
+  <b>score :</b>{{callScore(stu)}}<br>
+  <button [disabled]="callScore(stu) >= 10 ? true : callScore(stu) < 9 ? true : false"  (click)="callRachat(stu)">Rachat</button>
+  <button [disabled]="callScore(stu) >= 9 ? true : false"  (click)="delete1(stu)">Delete</button>
+  <button (click)="toggelUpdateShow()">Update</button>
+  <button (click)="toggeladdShow()">Demande Repassage</button><br>
+
+  <div *ngIf="updateShow" >
+    <!--<div [hidden]="!updateShow" >-->
+      <h3>Update Note</h3>
+    <form>
+    <label>anglais</label>
+    <input type="number" name="anglais" [(ngModel)]="studentup.anglais">
+    <label>francais</label>
+    <input type="number" name="francais" [(ngModel)]="studentup.francais">
+    <label>droit</label>
+    <input type="number"  name="droit" [(ngModel)]="studentup.droit">
+    <button type="submit" (click)="updateNote()">submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="addShow" >
+      <!--<div [hidden]="!addShow" >-->
+        <h3>Add Demande Repassage</h3>
+      <form>
+        <label>Matiere</label>
+          <select (change)="matiereCourant(position.value)" #position>
+              <option  *ngFor="let mat of matieres">{{mat}}</option>
+          </select>
+      
+      <button type="submit" (click)="ajoutDemande1()">confirme</button>
+      </form>
+    </div>
+
+</fieldset>

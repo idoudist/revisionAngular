@@ -1,0 +1,5 @@
+[ 
+    {"nom":"nomj1", "prenom":"prenomj1", "anglais":15, "francais":9, "droit":10},
+    {"nom":"nomj2", "prenom":"prenomj2", "anglais":12, "francais":7, "droit":10}, 
+    {"nom":"nomj3", "prenom":"prenomj3", "anglais":7, "francais":5, "droit":6 } 
+]
